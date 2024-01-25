@@ -5,7 +5,7 @@ using UnityEngine;
 public class UnitController : MonoBehaviour
 {
     public int id;
-    public string name;
+    public string unitName;
     public int HP;
     public UnitType unitType;
     public Side side;

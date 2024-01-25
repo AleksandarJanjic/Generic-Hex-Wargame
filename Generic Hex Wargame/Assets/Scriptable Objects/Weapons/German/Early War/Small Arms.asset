@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8d158009545ee43a5900ce8a66f930, type: 3}
   m_Name: Small Arms
   m_EditorClassIdentifier: 
+  weaponName: 
   numberOfDice: 6
   toHitNumber: 5
   hexRange: 2
+  abilities: 00000000

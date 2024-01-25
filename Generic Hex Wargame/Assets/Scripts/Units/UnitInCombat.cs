@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class UnitInCombat 
 {
     public int id;
@@ -12,6 +13,7 @@ public class UnitInCombat
     public UnitProfiles currentProfile;
     public List<StatusEffect> statusEffects;
     public WeaponProfileResults profileResults;
+    public CombatResult combatResult;
 
     // This constructor could be changed to only take the id
     // And then use list of all units and reconstruct it with id only
@@ -26,6 +28,7 @@ public class UnitInCombat
         currentProfile = profile;
         statusEffects = statuses;
 
+        combatResult = new CombatResult();
         statusEffects = new List<StatusEffect>();
         profileResults = new WeaponProfileResults();
         profileResults.results = new List<DieRoll>();

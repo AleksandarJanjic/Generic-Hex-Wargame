@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e8d158009545ee43a5900ce8a66f930, type: 3}
-  m_Name: Small Arms
+  m_Script: {fileID: 11500000, guid: 845c8e2be9e29b142bea3ca50c50e752, type: 3}
+  m_Name: Soviet Armor Green
   m_EditorClassIdentifier: 
-  weaponName: 
-  numberOfDice: 5
-  toHitNumber: 5
-  hexRange: 2
-  abilities: 00000000
+  unitWeapons:
+  - {fileID: 11400000, guid: cb5bab6c99f39b445bfb0583dc1a3d81, type: 2}

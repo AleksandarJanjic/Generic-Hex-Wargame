@@ -52,13 +52,23 @@ public class BattleManager : MonoBehaviour
             UnitController unitController = tempUnitsParent.transform.GetChild(i).GetComponent<UnitController>();
             unitController.id = i;
 
-            unitController.activeProfile = new UnitProfiles();
-            unitController.activeProfile.unitWeapons = new List<WeaponProfile>();
-            WeaponProfile smallArms = new WeaponProfile();
-            smallArms.numberOfDice = 6;
-            smallArms.toHitNumber = 4;
-            unitController.activeProfile.unitWeapons.Add(smallArms);
-
+            if(i == 0 || i == 1)
+            {
+                unitController.activeProfile = UnitProfileFactory.instance.CreateProfile(ScenarioInfo.instance.GetUnitSOByName("Infantry Division").greenProfile);
+            } else if(i == 2)
+            {
+                unitController.activeProfile = UnitProfileFactory.instance.CreateProfile(ScenarioInfo.instance.GetUnitSOByName("Rifle Division").greenProfile);
+            } else if(i == 3)
+            {
+                unitController.activeProfile = UnitProfileFactory.instance.CreateProfile(ScenarioInfo.instance.GetUnitSOByName("Tank Division").greenProfile);
+            }
+            //unitController.activeProfile.unitWeapons = new List<WeaponProfile>();
+            //WeaponProfile smallArms = new WeaponProfile();
+            //smallArms.numberOfDice = 6;
+            //smallArms.toHitNumber = 4;
+            //smallArms.abilities = new List<Ability>();
+            //smallArms.abilities.Add(new SmallArms());
+            //unitController.activeProfile.unitWeapons.Add(smallArms);
 
             if(i == 0 || i == 1)
             {
