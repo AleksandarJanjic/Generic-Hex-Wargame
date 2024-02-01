@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "Weapon Profile", menuName = "ScriptableObjects/Weapon Profile", order = 3)]
 public class WeaponProfileSO : ScriptableObject
 {
@@ -13,6 +14,7 @@ public class WeaponProfileSO : ScriptableObject
     public List<AbilityEnums> abilities;
 }
 
+[System.Serializable]
 public enum AbilityEnums 
 {
     SMALL_ARMS,
