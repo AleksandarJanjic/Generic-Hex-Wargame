@@ -5,5 +5,5 @@ using UnityEngine;
 [System.Serializable]
 public class ScenarioData
 {
-    public List<UnitController> units;
+    public List<Data.Unit> units;
 }

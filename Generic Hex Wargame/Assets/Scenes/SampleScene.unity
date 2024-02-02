@@ -186,6 +186,10 @@ PrefabInstance:
       propertyPath: unitType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
+      propertyPath: unitTemplate
+      value: 
+      objectReference: {fileID: 11400000, guid: 31110c86e261c674da231ae26728df1d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f73e195de42ff29418ec87670c60795c, type: 3}
 --- !u!4 &138126382 stripped
@@ -716,6 +720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proxy Unit (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
+      propertyPath: unitTemplate
+      value: 
+      objectReference: {fileID: 11400000, guid: 4013f26504440f549a9f2e46260b3b74, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f73e195de42ff29418ec87670c60795c, type: 3}
 --- !u!4 &1588471183 stripped
@@ -903,6 +911,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proxy Unit (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
+      propertyPath: unitTemplate
+      value: 
+      objectReference: {fileID: 11400000, guid: 41cc7ed7c66630b469c0a126aa75d297, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f73e195de42ff29418ec87670c60795c, type: 3}
 --- !u!4 &1909040800 stripped
@@ -1033,6 +1045,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proxy Unit
       objectReference: {fileID: 0}
+    - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
+      propertyPath: unitTemplate
+      value: 
+      objectReference: {fileID: 11400000, guid: 41cc7ed7c66630b469c0a126aa75d297, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f73e195de42ff29418ec87670c60795c, type: 3}
 --- !u!4 &2712736072022690672 stripped

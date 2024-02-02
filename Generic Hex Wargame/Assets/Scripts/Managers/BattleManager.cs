@@ -1,15 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    public static BattleManager instance;
+    [HideInInspector]
+    public ScenarioData scenarioData;
     public GameObject tempUnitsParent;
-    public UnitController selectedUnit;
-    Dictionary<int, UnitController> allUnits;
+    public Data.Unit selectedUnit;
+    public Dictionary<int, Data.Unit> allUnits;
     private List<Side> sides;
 
+    private string filePath = "Assets/Resources/Scenario File.json";
+
+    private void Awake()
+    {
+        // Ensure there is only one instance, destroy duplicates
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        // Set the instance to this object
+        instance = this;
+
+        // Optional: Make the GameObject persist across scenes
+        DontDestroyOnLoad(gameObject);
+    }
     void OnEnable()
     {
         InputController.OnUnitClicked += UnitIsClicked;
@@ -41,12 +61,37 @@ public class BattleManager : MonoBehaviour
         sides.Add(sideB);
     }
 
+    public void LoadUnits()
+    {
+        string jsonText = System.IO.File.ReadAllText(filePath);
+
+        // Deserialize the JSON string into your data structure
+        scenarioData = JsonConvert.DeserializeObject<ScenarioData>(jsonText);
+
+        // Now 'myData' contains the deserialized data, and you can use it as needed
+        Debug.Log("Deserialized data: " + scenarioData.ToString());
+    }
+
     public void UnitsSetup()
     {
-        allUnits = new Dictionary<int, UnitController>();
+        LoadUnits();
+        allUnits = new Dictionary<int, Data.Unit>();
+
+        for(int i = 0; i < scenarioData.units.Count; i++)
+        {
+            allUnits.Add(i, scenarioData.units[i]);
+        }
         // assign units id's and add them to dictionary
         // TODO load them from game manager
         // for now collect them from scene
+
+        // Create all the units here, with their UnitControllers and fill them with data
+        for(int i = 0; i < allUnits.Count; i++)
+        {
+            GameObject unit = Instantiate(new GameObject(), tempUnitsParent.transform.position, new Quaternion(allUnits[i].posX, allUnits[i].posY, 0 ,0));
+            unit.AddComponent<UnitController>();
+        }
+
         for(int i = 0; i < tempUnitsParent.transform.childCount; i++)
         {
             UnitController unitController = tempUnitsParent.transform.GetChild(i).GetComponent<UnitController>();
@@ -77,14 +122,23 @@ public class BattleManager : MonoBehaviour
             {
                 unitController.side = sides[1];
             }
-            allUnits.Add(i, unitController);
+            // allUnits.Add(i, unitController);
         }
+    }
+
+    public Data.Unit GetUnitData(int id)
+    {
+        Data.Unit result = new Data.Unit();
+        Data.Unit reference = allUnits[id];
+        string json = JsonConvert.SerializeObject(reference);
+        result = JsonConvert.DeserializeObject<Data.Unit>(json);
+        return result;
     }
 
     public void UnitIsClicked(int id, bool rightClick)
     {
         // get the unit clicked from dictionary 
-        UnitController unitTemp;
+        Data.Unit unitTemp;
         allUnits.TryGetValue(id, out unitTemp);
         // check if the unit clicked is friendly
         if(unitTemp.side.controller == Controller.PLAYER && !rightClick)
@@ -95,7 +149,7 @@ public class BattleManager : MonoBehaviour
         {
             Debug.Log("Start combat");
             //Go to combat ui
-            CombatManager.instance.StartCombat(selectedUnit, unitTemp);
+            CombatManager.instance.StartCombat(selectedUnit.id, unitTemp.id);
         }
     }
 }

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IBeforeRoll
 {
-    public void BeforeRollEffect(UnitController active, UnitController passive);
+    public void BeforeRollEffect(Data.Unit active, Data.Unit passive);
     
 }

@@ -21,16 +21,21 @@ public class CombatManager : MonoBehaviour
     }
 
     public UnitController attackingUnit, defendingUnit;
+    public Data.Unit attackerData, defenderData;
     public UnitInCombat attackingUnitInCombat, defendingUnitInCombat;
 
-    public void StartCombat(UnitController attacker, UnitController defender)
+    public void StartCombat(int attacker, int defender)
     {
         // get info from both units, roll dice, total up hits and deal damage to each
-        attackingUnit = attacker;
-        defendingUnit = defender;
+        // attackingUnit = attacker;
+        // defendingUnit = defender;
 
-        attackingUnitInCombat = new UnitInCombat(attacker.id, attacker.name, attacker.HP, attacker.unitType, attacker.side, attacker.activeProfile, attacker.statusEffects);
-        defendingUnitInCombat = new UnitInCombat(defender.id, defender.name, defender.HP, defender.unitType, defender.side, defender.activeProfile, defender.statusEffects);
+        // Get attacker and defender based on id
+        attackerData = BattleManager.instance.GetUnitData(attacker);
+        defenderData = BattleManager.instance.GetUnitData(defender);
+
+        attackingUnitInCombat = new UnitInCombat(attackerData.id, attackerData.unitName, attackerData.HP, attackerData.unitType, attackerData.side, attackerData.activeProfile, attackerData.statusEffects);
+        defendingUnitInCombat = new UnitInCombat(defenderData.id, defenderData.unitName, defenderData.HP, defenderData.unitType, defenderData.side, defenderData.activeProfile, defenderData.statusEffects);
 
         // go through units and check if they have before roll abilities
 
@@ -41,7 +46,7 @@ public class CombatManager : MonoBehaviour
                 if(weaponAbility is IBeforeRoll)
                 {
                     IBeforeRoll beforeRollEffect = (IBeforeRoll)weaponAbility;
-                    beforeRollEffect.BeforeRollEffect(attacker, defender);
+                    beforeRollEffect.BeforeRollEffect(attackerData, defenderData);
                 }
             }
         }

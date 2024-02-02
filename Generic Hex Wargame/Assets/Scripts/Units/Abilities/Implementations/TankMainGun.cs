@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TankMainGun : Ability, IBeforeRoll
 {
-    public void BeforeRollEffect(UnitController active, UnitController passive)
+    public void BeforeRollEffect(Data.Unit active, Data.Unit passive)
     {
         if (passive.unitType == UnitType.INFANTRY)
         {

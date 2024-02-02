@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAfterRoll
 {
-    public void AfterRollEffect(UnitController active, UnitController passive);
+    public void AfterRollEffect(Data.Unit active, Data.Unit passive);
 }

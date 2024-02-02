@@ -43,11 +43,22 @@ public class ScenarioFileGenerator : EditorWindow
     public void GenerateJSON()
     {
         ScenarioData scenarioData = new ScenarioData();
-        scenarioData.units = new List<UnitController>();
+        scenarioData.units = new List<Data.Unit>();
         Debug.Log("Generating JSON");
         for(int i = 0; i < unitsParent.transform.childCount; i++)
         {
-            scenarioData.units.Add(unitsParent.transform.GetChild(i).GetComponent<UnitController>());
+            UnitController controller = unitsParent.transform.GetChild(i).GetComponent<UnitController>();
+            Data.Unit unit = new Data.Unit();
+            unit.id = controller.id;
+            unit.unitName = controller.unitName;
+            unit.unitType = controller.unitType;
+            unit.side = controller.side;
+            unit.HP = controller.HP;
+            unit.statusEffects = controller.statusEffects;
+            unit.unitTemplate = controller.unitTemplate;
+            unit.posX = controller.transform.position.x;
+            unit.posY = controller.transform.position.y;
+            scenarioData.units.Add(unit);
         }
         string json = JsonConvert.SerializeObject(scenarioData, Formatting.Indented, new JsonSerializerSettings
         {

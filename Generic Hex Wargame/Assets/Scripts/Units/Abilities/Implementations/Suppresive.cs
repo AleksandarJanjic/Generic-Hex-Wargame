@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Suppresive : Ability, IAfterRoll
 {
-    public void AfterRollEffect(UnitController active, UnitController passive)
+    public void AfterRollEffect(Data.Unit active, Data.Unit passive)
     {
         
     }
