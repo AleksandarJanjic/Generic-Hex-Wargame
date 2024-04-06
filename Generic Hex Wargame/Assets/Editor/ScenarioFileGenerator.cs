@@ -65,7 +65,7 @@ public class ScenarioFileGenerator : EditorWindow
         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
         });
 
-        string filePath = Path.Combine(Application.dataPath, "Scenario File.json");
+        string filePath = Path.Combine(Application.streamingAssetsPath, "Scenario File.json");
         File.WriteAllText(filePath, json);
 
     }

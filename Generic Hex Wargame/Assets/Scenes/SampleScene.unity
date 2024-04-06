@@ -233,6 +233,10 @@ MonoBehaviour:
     name: 
     HP: 0
     unitType: 0
+    side:
+      name: 
+      isPlayerControlled: 0
+      controller: 0
     currentProfile:
       unitWeapons: []
     profileResults:
@@ -246,6 +250,10 @@ MonoBehaviour:
     name: 
     HP: 0
     unitType: 0
+    side:
+      name: 
+      isPlayerControlled: 0
+      controller: 0
     currentProfile:
       unitWeapons: []
     profileResults:
@@ -840,7 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempUnitsParent: {fileID: 1635333113}
-  selectedUnit: {fileID: 0}
+  unitPrefab: {fileID: 2712736073136802606, guid: f73e195de42ff29418ec87670c60795c, type: 3}
 --- !u!4 &1853380563
 Transform:
   m_ObjectHideFlags: 0

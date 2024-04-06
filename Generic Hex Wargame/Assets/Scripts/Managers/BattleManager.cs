@@ -10,6 +10,7 @@ public class BattleManager : MonoBehaviour
     [HideInInspector]
     public ScenarioData scenarioData;
     public GameObject tempUnitsParent;
+    public GameObject unitPrefab;
     public Data.Unit selectedUnit;
     public Dictionary<int, Data.Unit> allUnits;
     private List<Side> sides;
@@ -81,6 +82,13 @@ public class BattleManager : MonoBehaviour
         {
             allUnits.Add(i, scenarioData.units[i]);
         }
+
+
+        for(int i = 0; i < tempUnitsParent.transform.childCount; i++)
+        {
+            Destroy(tempUnitsParent.transform.GetChild(i).gameObject);
+        }
+        
         // assign units id's and add them to dictionary
         // TODO load them from game manager
         // for now collect them from scene
@@ -88,7 +96,7 @@ public class BattleManager : MonoBehaviour
         // Create all the units here, with their UnitControllers and fill them with data
         for(int i = 0; i < allUnits.Count; i++)
         {
-            GameObject unit = Instantiate(new GameObject(), tempUnitsParent.transform.position, new Quaternion(allUnits[i].posX, allUnits[i].posY, 0 ,0));
+            GameObject unit = Instantiate(unitPrefab, new Vector3(allUnits[i].posX, allUnits[i].posY, 0), Quaternion.identity, tempUnitsParent.transform);
             unit.AddComponent<UnitController>();
         }
 
@@ -117,6 +125,7 @@ public class BattleManager : MonoBehaviour
 
             if(i == 0 || i == 1)
             {
+                Debug.Log(sides[0].controller);
                 unitController.side = sides[0];
             } else 
             {
@@ -140,6 +149,8 @@ public class BattleManager : MonoBehaviour
         // get the unit clicked from dictionary 
         Data.Unit unitTemp;
         allUnits.TryGetValue(id, out unitTemp);
+        Debug.Log(unitTemp.side);
+        Debug.Log(unitTemp.side.controller);
         // check if the unit clicked is friendly
         if(unitTemp.side.controller == Controller.PLAYER && !rightClick)
         {

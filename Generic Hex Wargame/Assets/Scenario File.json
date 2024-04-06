@@ -5,8 +5,13 @@
       "unitName": "",
       "HP": 10,
       "unitType": 0,
-      "side": null,
+      "side": {
+        "name": "",
+        "isPlayerControlled": false,
+        "controller": 0
+      },
       "statusEffects": null,
+      "activeProfile": null,
       "unitTemplate": {
         "unitName": "Infantry Division",
         "HP": 18,
@@ -32,15 +37,22 @@
         "redProfile": null,
         "name": "German Infantry Division",
         "hideFlags": 0
-      }
+      },
+      "posX": 0.4215026,
+      "posY": -0.327301979
     },
     {
       "id": 0,
       "unitName": "",
       "HP": 10,
       "unitType": 0,
-      "side": null,
+      "side": {
+        "name": "",
+        "isPlayerControlled": false,
+        "controller": 0
+      },
       "statusEffects": null,
+      "activeProfile": null,
       "unitTemplate": {
         "unitName": "Infantry Division",
         "HP": 18,
@@ -66,15 +78,22 @@
         "redProfile": null,
         "name": "German Infantry Division",
         "hideFlags": 0
-      }
+      },
+      "posX": -3.34000015,
+      "posY": -2.04
     },
     {
       "id": 0,
       "unitName": "",
       "HP": 10,
       "unitType": 0,
-      "side": null,
+      "side": {
+        "name": "",
+        "isPlayerControlled": false,
+        "controller": 0
+      },
       "statusEffects": null,
+      "activeProfile": null,
       "unitTemplate": {
         "unitName": "Rifle Division",
         "HP": 15,
@@ -100,15 +119,22 @@
         "redProfile": null,
         "name": "Soviet Rifle Division",
         "hideFlags": 0
-      }
+      },
+      "posX": 6.033283,
+      "posY": 0.647912741
     },
     {
       "id": 0,
       "unitName": "",
       "HP": 10,
       "unitType": 2,
-      "side": null,
+      "side": {
+        "name": "",
+        "isPlayerControlled": false,
+        "controller": 0
+      },
       "statusEffects": null,
+      "activeProfile": null,
       "unitTemplate": {
         "unitName": "Tank Division",
         "HP": 13,
@@ -134,7 +160,9 @@
         "redProfile": null,
         "name": "Soviet Tank Division",
         "hideFlags": 0
-      }
+      },
+      "posX": 7.963283,
+      "posY": 0.8479128
     }
   ]
 }
