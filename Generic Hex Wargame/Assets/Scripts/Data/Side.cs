@@ -5,10 +5,16 @@ using UnityEngine;
 [System.Serializable]
 public class Side
 {
-    public string name;
-    public bool isPlayerControlled;
-    public Controller controller;
+    [SerializeField] public string name;
+    [SerializeField] public bool isPlayerControlled;
+    [SerializeField] public Controller controller;
+
+    //public Side()
+    //{
+
+    //}
 }
+
 [System.Serializable]
 public enum Controller
 {

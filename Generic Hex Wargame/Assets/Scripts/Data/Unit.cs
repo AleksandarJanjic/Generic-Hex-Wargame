@@ -4,17 +4,27 @@ using UnityEngine;
 
 namespace Data
 {
-    public class Unit
+    [System.Serializable]
+    public class Unit 
     {
-        public int id;
-        public string unitName;
-        public int HP;
-        public UnitType unitType;
-        public Side side;
-        public List<StatusEffect> statusEffects;
-        public UnitProfiles activeProfile;
-        public UnitSO unitTemplate;
+        [SerializeField] public int id;
+        [SerializeField] public string unitName;
+        [SerializeField] public int HP;
+        [SerializeField] public UnitType unitType;
+        [SerializeField] public Side side;
+        [SerializeField] public List<StatusEffect> statusEffects;
+        [SerializeField] public UnitProfiles activeProfile;
+        [SerializeField] public UnitSO unitTemplate;
         // temp pos, will be replaced with hex and an enum (deployed, reserve etc)
-        public float posX, posY;
+        [SerializeField] public float posX, posY;
+
+
+        public Unit(int id)
+        {
+            this.id = id;
+            side = new Side();
+            statusEffects = new List<StatusEffect>();
+        }
+
     }
 }
