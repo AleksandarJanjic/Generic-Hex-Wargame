@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scriptable Objects\UnitProfileSO.cs" />
     <Compile Include="Assets\Scripts\Factories\WeaponProfileFactory.cs" />
     <Compile Include="Assets\Scripts\Factories\AbilityFactory.cs" />
+    <Compile Include="Assets\Scripts\Map\HexController.cs" />
     <Compile Include="Assets\Scripts\Combat\CombatResult.cs" />
     <Compile Include="Assets\Scripts\Units\UnitProfiles.cs" />
     <Compile Include="Assets\Scripts\Units\Abilities\IAfterRoll.cs" />

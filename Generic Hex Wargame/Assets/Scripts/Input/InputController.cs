@@ -12,11 +12,13 @@ public class InputController : MonoBehaviour
     void Update()
     {
         // Get Left Mouse Button click
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonUp(0))
         {
+            // Left Mouse Click
             MouseInput(false);
-        } else if(Input.GetMouseButtonDown(1))
+        } else if(Input.GetMouseButtonUp(1))
         {
+            // Right Mouse Click
             MouseInput(true);
         }
     }
@@ -50,6 +52,11 @@ public class InputController : MonoBehaviour
             {
                 Debug.Log("Unit was clicked, send event to Battle Manager");
                 OnUnitClicked?.Invoke(hit.collider.gameObject.GetComponentInParent<UnitController>().id, rightClick);
+            }
+            if(hit.collider.gameObject.GetComponentInParent<HexController>() != null)
+            {
+                Debug.Log("Hex was clicked");
+
             }
         }
     }
