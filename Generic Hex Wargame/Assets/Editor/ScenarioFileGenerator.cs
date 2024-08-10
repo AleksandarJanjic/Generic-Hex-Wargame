@@ -48,11 +48,12 @@ public class ScenarioFileGenerator : EditorWindow
         for(int i = 0; i < unitsParent.transform.childCount; i++)
         {
             UnitController controller = unitsParent.transform.GetChild(i).GetComponent<UnitController>();
-            Data.Unit unit = new Data.Unit();
+            Data.Unit unit = new Data.Unit(0);
             unit.id = controller.id;
             unit.unitName = controller.unitName;
             unit.unitType = controller.unitType;
             unit.side = controller.side;
+            Debug.Log(controller.side.controller);
             unit.HP = controller.HP;
             unit.statusEffects = controller.statusEffects;
             unit.unitTemplate = controller.unitTemplate;
@@ -60,12 +61,19 @@ public class ScenarioFileGenerator : EditorWindow
             unit.posY = controller.transform.position.y;
             scenarioData.units.Add(unit);
         }
-        string json = JsonConvert.SerializeObject(scenarioData, Formatting.Indented, new JsonSerializerSettings
-        {
-        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        });
+        string json = JsonUtility.ToJson(scenarioData, true);
+
+        //JsonSerializer serializer = new JsonSerializer();
 
         string filePath = Path.Combine(Application.streamingAssetsPath, "Scenario File.json");
+
+        //using (StreamWriter sw = new StreamWriter(@filePath))
+        //using (JsonWriter writer = new JsonTextWriter(sw))
+        //{
+        //    serializer.Serialize(writer, json);
+        //    // {"ExpiryDate":new Date(1230375600000),"Price":0}
+        //}
+
         File.WriteAllText(filePath, json);
 
     }

@@ -1,0 +1,84 @@
+{
+    "units": [
+        {
+            "id": 1,
+            "unitName": "",
+            "HP": 10,
+            "unitType": 0,
+            "side": {
+                "name": "",
+                "isPlayerControlled": false,
+                "controller": 0
+            },
+            "statusEffects": [],
+            "activeProfile": {
+                "unitWeapons": []
+            },
+            "unitTemplate": {
+                "instanceID": 23998
+            },
+            "posX": 0.42150259017944338,
+            "posY": -0.3273019790649414
+        },
+        {
+            "id": 2,
+            "unitName": "",
+            "HP": 10,
+            "unitType": 0,
+            "side": {
+                "name": "",
+                "isPlayerControlled": false,
+                "controller": 0
+            },
+            "statusEffects": [],
+            "activeProfile": {
+                "unitWeapons": []
+            },
+            "unitTemplate": {
+                "instanceID": 23998
+            },
+            "posX": -3.3400001525878908,
+            "posY": -2.0399999618530275
+        },
+        {
+            "id": 3,
+            "unitName": "",
+            "HP": 10,
+            "unitType": 0,
+            "side": {
+                "name": "",
+                "isPlayerControlled": false,
+                "controller": 1
+            },
+            "statusEffects": [],
+            "activeProfile": {
+                "unitWeapons": []
+            },
+            "unitTemplate": {
+                "instanceID": 24000
+            },
+            "posX": 6.033283233642578,
+            "posY": 0.6479127407073975
+        },
+        {
+            "id": 4,
+            "unitName": "",
+            "HP": 10,
+            "unitType": 2,
+            "side": {
+                "name": "",
+                "isPlayerControlled": false,
+                "controller": 1
+            },
+            "statusEffects": [],
+            "activeProfile": {
+                "unitWeapons": []
+            },
+            "unitTemplate": {
+                "instanceID": 23994
+            },
+            "posX": 7.963283061981201,
+            "posY": 0.8479127883911133
+        }
+    ]
+}

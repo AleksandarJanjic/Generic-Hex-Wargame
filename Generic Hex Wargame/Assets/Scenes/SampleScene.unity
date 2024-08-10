@@ -183,6 +183,10 @@ PrefabInstance:
       value: Proxy Unit (3)
       objectReference: {fileID: 0}
     - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
+      propertyPath: id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
       propertyPath: unitType
       value: 2
       objectReference: {fileID: 0}
@@ -190,6 +194,10 @@ PrefabInstance:
       propertyPath: unitTemplate
       value: 
       objectReference: {fileID: 11400000, guid: 31110c86e261c674da231ae26728df1d, type: 2}
+    - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
+      propertyPath: side.controller
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f73e195de42ff29418ec87670c60795c, type: 3}
 --- !u!4 &138126382 stripped
@@ -260,6 +268,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackingUnit: {fileID: 0}
   defendingUnit: {fileID: 0}
+  attackerData:
+    id: 0
+    unitName: 
+    HP: 0
+    unitType: 0
+    side:
+      name: 
+      isPlayerControlled: 0
+      controller: 0
+    statusEffects: []
+    activeProfile:
+      unitWeapons: []
+    unitTemplate: {fileID: 0}
+    posX: 0
+    posY: 0
+  defenderData:
+    id: 0
+    unitName: 
+    HP: 0
+    unitType: 0
+    side:
+      name: 
+      isPlayerControlled: 0
+      controller: 0
+    statusEffects: []
+    activeProfile:
+      unitWeapons: []
+    unitTemplate: {fileID: 0}
+    posX: 0
+    posY: 0
   attackingUnitInCombat:
     id: 0
     name: 
@@ -271,11 +309,13 @@ MonoBehaviour:
       controller: 0
     currentProfile:
       unitWeapons: []
+    statusEffects: []
     profileResults:
       weaponProfileName: 
       results: []
     combatResult:
       causedHits: 0
+      causedStatusEffects: []
       weaponProfileResults: []
   defendingUnitInCombat:
     id: 0
@@ -288,11 +328,13 @@ MonoBehaviour:
       controller: 0
     currentProfile:
       unitWeapons: []
+    statusEffects: []
     profileResults:
       weaponProfileName: 
       results: []
     combatResult:
       causedHits: 0
+      causedStatusEffects: []
       weaponProfileResults: []
 --- !u!4 &378841198
 Transform:
@@ -798,9 +840,17 @@ PrefabInstance:
       value: Proxy Unit (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
+      propertyPath: id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
       propertyPath: unitTemplate
       value: 
       objectReference: {fileID: 11400000, guid: 4013f26504440f549a9f2e46260b3b74, type: 2}
+    - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
+      propertyPath: side.controller
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f73e195de42ff29418ec87670c60795c, type: 3}
 --- !u!4 &1588471183 stripped
@@ -916,8 +966,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00589e321235cb743bd1530e69ed0662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenarioData:
+    units: []
   tempUnitsParent: {fileID: 1635333113}
   unitPrefab: {fileID: 2712736073136802606, guid: f73e195de42ff29418ec87670c60795c, type: 3}
+  selectedUnit:
+    id: 0
+    unitName: 
+    HP: 0
+    unitType: 0
+    side:
+      name: 
+      isPlayerControlled: 0
+      controller: 0
+    statusEffects: []
+    activeProfile:
+      unitWeapons: []
+    unitTemplate: {fileID: 0}
+    posX: 0
+    posY: 0
 --- !u!4 &1853380563
 Transform:
   m_ObjectHideFlags: 0
@@ -987,6 +1054,10 @@ PrefabInstance:
     - target: {fileID: 2712736073136802606, guid: f73e195de42ff29418ec87670c60795c, type: 3}
       propertyPath: m_Name
       value: Proxy Unit (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
+      propertyPath: id
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
       propertyPath: unitTemplate
@@ -1121,6 +1192,10 @@ PrefabInstance:
     - target: {fileID: 2712736073136802606, guid: f73e195de42ff29418ec87670c60795c, type: 3}
       propertyPath: m_Name
       value: Proxy Unit
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
+      propertyPath: id
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4702913767810751543, guid: f73e195de42ff29418ec87670c60795c, type: 3}
       propertyPath: unitTemplate

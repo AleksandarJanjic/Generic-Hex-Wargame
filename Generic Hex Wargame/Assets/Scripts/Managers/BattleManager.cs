@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,7 +8,6 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
-    [HideInInspector]
     public ScenarioData scenarioData;
     public GameObject tempUnitsParent;
     public GameObject unitPrefab;
@@ -64,13 +64,22 @@ public class BattleManager : MonoBehaviour
 
     public void LoadUnits()
     {
+        filePath = Path.Combine(Application.streamingAssetsPath, "Scenario File.json");
         string jsonText = System.IO.File.ReadAllText(filePath);
 
-        // Deserialize the JSON string into your data structure
-        scenarioData = JsonConvert.DeserializeObject<ScenarioData>(jsonText);
+
+        Debug.Log(jsonText);
+
+        //// Deserialize the JSON string into your data structure
+        scenarioData = JsonUtility.FromJson<ScenarioData>(jsonText);
+        //scenarioData = JsonConvert.DeserializeObject<ScenarioData>(jsonText);
 
         // Now 'myData' contains the deserialized data, and you can use it as needed
         Debug.Log("Deserialized data: " + scenarioData.ToString());
+        foreach(Data.Unit unit in scenarioData.units)
+        {
+            Debug.Log("With id: " + unit.id);
+        }
     }
 
     public void UnitsSetup()
@@ -80,7 +89,9 @@ public class BattleManager : MonoBehaviour
 
         for(int i = 0; i < scenarioData.units.Count; i++)
         {
-            allUnits.Add(i, scenarioData.units[i]);
+            Debug.Log("Adding unit for key/id " + i);
+            Debug.Log(scenarioData.units[i].side.controller);
+            allUnits.Add(scenarioData.units[i].id, scenarioData.units[i]);
         }
 
 
@@ -94,16 +105,17 @@ public class BattleManager : MonoBehaviour
         // for now collect them from scene
 
         // Create all the units here, with their UnitControllers and fill them with data
-        for(int i = 0; i < allUnits.Count; i++)
+        foreach(KeyValuePair<int, Data.Unit> unit in allUnits)
         {
-            GameObject unit = Instantiate(unitPrefab, new Vector3(allUnits[i].posX, allUnits[i].posY, 0), Quaternion.identity, tempUnitsParent.transform);
-            unit.AddComponent<UnitController>();
+            GameObject unitToInstantiate = Instantiate(unitPrefab, new Vector3(allUnits[unit.Key].posX, allUnits[unit.Key].posY, 0), Quaternion.identity, tempUnitsParent.transform);
+            UnitController unitController = unitToInstantiate.GetComponent<UnitController>();
+
+            unitController.id = unit.Value.id;
         }
 
         for(int i = 0; i < tempUnitsParent.transform.childCount; i++)
         {
             UnitController unitController = tempUnitsParent.transform.GetChild(i).GetComponent<UnitController>();
-            unitController.id = i;
 
             if(i == 0 || i == 1)
             {
@@ -125,7 +137,6 @@ public class BattleManager : MonoBehaviour
 
             if(i == 0 || i == 1)
             {
-                Debug.Log(sides[0].controller);
                 unitController.side = sides[0];
             } else 
             {
@@ -137,7 +148,7 @@ public class BattleManager : MonoBehaviour
 
     public Data.Unit GetUnitData(int id)
     {
-        Data.Unit result = new Data.Unit();
+        Data.Unit result = new Data.Unit(0);
         Data.Unit reference = allUnits[id];
         string json = JsonConvert.SerializeObject(reference);
         result = JsonConvert.DeserializeObject<Data.Unit>(json);
@@ -147,10 +158,32 @@ public class BattleManager : MonoBehaviour
     public void UnitIsClicked(int id, bool rightClick)
     {
         // get the unit clicked from dictionary 
-        Data.Unit unitTemp;
-        allUnits.TryGetValue(id, out unitTemp);
-        Debug.Log(unitTemp.side);
-        Debug.Log(unitTemp.side.controller);
+        Data.Unit unitTemp = null;
+        Debug.Log("Get unit for key " + id);
+
+        foreach(KeyValuePair<int, Data.Unit> unit in allUnits)
+        {
+            Debug.Log("Current key is " + unit.Key);
+            if(unit.Key == id)
+            {
+                unitTemp = unit.Value;
+            }
+        }
+
+        if (unitTemp != null)
+        {
+            Debug.Log("Units is nor null");
+            Debug.Log(unitTemp);
+        }
+        else
+        {
+            Debug.Log("Unit with id " + id + " does not exist ");
+            foreach(KeyValuePair<int, Data.Unit> unit in allUnits)
+            {
+                Debug.Log("id " + unit.Value.id + " exists");
+            }
+        }
+        Debug.Log(unitTemp.side.controller.ToString());
         // check if the unit clicked is friendly
         if(unitTemp.side.controller == Controller.PLAYER && !rightClick)
         {
