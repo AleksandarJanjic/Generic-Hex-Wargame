@@ -110,7 +110,7 @@ public class BattleManager : MonoBehaviour
             GameObject unitToInstantiate = Instantiate(unitPrefab, new Vector3(allUnits[unit.Key].posX, allUnits[unit.Key].posY, 0), Quaternion.identity, tempUnitsParent.transform);
             UnitController unitController = unitToInstantiate.GetComponent<UnitController>();
 
-            unitController.id = unit.Value.id;
+            unitController.SetUnitId(unit.Value.id);
         }
 
         for(int i = 0; i < tempUnitsParent.transform.childCount; i++)

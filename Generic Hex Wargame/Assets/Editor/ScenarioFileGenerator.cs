@@ -49,7 +49,7 @@ public class ScenarioFileGenerator : EditorWindow
         {
             UnitController controller = unitsParent.transform.GetChild(i).GetComponent<UnitController>();
             Data.Unit unit = new Data.Unit(0);
-            unit.id = controller.id;
+            unit.id = controller.GetUnitId();
             unit.unitName = controller.unitName;
             unit.unitType = controller.unitType;
             unit.side = controller.side;

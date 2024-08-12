@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class HexController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int hexId;
+
+    public int GetHexId()
     {
-        
+        return hexId;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetHexId(int hexId)
     {
-        
+        this.hexId = hexId;
     }
 }

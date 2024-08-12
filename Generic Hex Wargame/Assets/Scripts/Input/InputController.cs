@@ -51,7 +51,7 @@ public class InputController : MonoBehaviour
             if(hit.collider.gameObject.GetComponentInParent<UnitController>() != null)
             {
                 Debug.Log("Unit was clicked, send event to Battle Manager");
-                OnUnitClicked?.Invoke(hit.collider.gameObject.GetComponentInParent<UnitController>().id, rightClick);
+                OnUnitClicked?.Invoke(hit.collider.gameObject.GetComponentInParent<UnitController>().GetUnitId(), rightClick);
             }
             if(hit.collider.gameObject.GetComponentInParent<HexController>() != null)
             {

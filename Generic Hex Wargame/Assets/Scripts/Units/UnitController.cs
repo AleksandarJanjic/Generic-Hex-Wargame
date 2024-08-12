@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class UnitController : MonoBehaviour
 {
-    public int id;
+    [SerializeField] private int id;
     public string unitName;
     public int HP;
     public UnitType unitType;
@@ -14,6 +14,16 @@ public class UnitController : MonoBehaviour
     public UnitProfiles activeProfile;
     public List<StatusEffect> statusEffects;
     public UnitSO unitTemplate;
+
+    public int GetUnitId()
+    {
+        return id;
+    }
+
+    public void SetUnitId(int id)
+    {
+        this.id = id;
+    }
 }
 
 [System.Serializable]
