@@ -98,6 +98,9 @@ public class HexGridGenerator : EditorWindow
                 hexInstance.transform.parent = hexGridParent.transform;
                 hexInstance.transform.position = hexPosition;
                 hexInstance.name = $"Hex_{x}_{y}";
+                int res = 0;
+                int.TryParse(x + "" + y, out res);
+                hexInstance.GetComponent<HexController>().SetHexId(res);
             }
         }
     }

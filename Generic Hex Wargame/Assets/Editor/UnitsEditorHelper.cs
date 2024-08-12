@@ -52,11 +52,11 @@ public class UnitsEditorHelper : EditorWindow
             // Check if the raycast hit something on the target layer
             if(hit.collider != null)
             {
-                Debug.Log($"Hit object: {hit.collider.gameObject.name}");
-                controller = hit.collider.gameObject.GetComponent<HexController>();
+                Debug.Log($"Hit object: {hit.collider.gameObject.transform.parent.name}");
+                controller = hit.collider.gameObject.GetComponentInParent<HexController>();
                 if(controller != null)
                 {
-                    currentUnit.gameObject.GetComponentInChildren<UnitPositionHelper>().UnitPlacedOnHex(currentUnit.GetUnitId(), controller.GetHexId());
+                    currentUnit.gameObject.GetComponentInChildren<UnitPositionHelper>().UnitPlacedOnHex(currentUnit, controller.GetHexId());
                 }
             }
 

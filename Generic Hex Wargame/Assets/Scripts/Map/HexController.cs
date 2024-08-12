@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HexController : MonoBehaviour
 {
-    private int hexId;
+    [SerializeField] private int hexId;
 
     public int GetHexId()
     {
