@@ -59,6 +59,12 @@ public class HexGridGenerator : EditorWindow
         button.text = "Generate Hex Grid";
         button.clickable.clicked += GenerateGrid;
         root.Add(button);
+
+        Button getNeighboursButton = new Button();
+        getNeighboursButton.name = "GenerateNeighbours";
+        getNeighboursButton.text = "Get Hex Neighbours";
+        getNeighboursButton.clickable.clicked += ConnectHexes;
+        root.Add(getNeighboursButton);
     }
 
     public void GenerateGrid()
@@ -103,5 +109,53 @@ public class HexGridGenerator : EditorWindow
                 hexInstance.GetComponent<HexController>().SetHexId(res);
             }
         }
+    }
+
+    public void ConnectHexes()
+    {
+        LayerMask targetLayer = GetLayerMaskByName("HexGrid");
+        float rayDistance = 10f;
+
+        //for (int i = 0; i < hexGridParent.transform.childCount; i++)
+        for (int i = 0; i < 1; i++)
+        {
+            HexController currentHex = hexGridParent.transform.GetChild(i).GetComponent<HexController>();
+
+            // cast six rays to get hex controllers adjacent
+
+            float[] angles = { 0f, 60f, 120f, 180f, 240f, 300f };
+
+            foreach (float angle in angles)
+            {
+                // Calculate direction based on angle
+                Vector3 direction = Quaternion.Euler(0, 0, angle) * currentHex.gameObject.transform.up;
+
+                // Perform the raycast
+                RaycastHit2D[] hits = Physics2D.RaycastAll(currentHex.gameObject.transform.position, direction, rayDistance, targetLayer);
+                foreach (RaycastHit2D hit in hits)
+                {
+                    if (hit.collider != null && hit.collider.gameObject != currentHex.gameObject.GetComponent<HexController>().colliderGameObject.gameObject)
+                    {
+                        Debug.Log($"Ray hit: {hit.collider.gameObject.GetComponentInParent<HexController>().GetHexId()} at angle {angle} degrees");
+                        break; // Exit after finding the first valid hit
+                    }
+                }
+
+                // Draw the ray in the Scene view for visualization
+                Debug.DrawRay(currentHex.gameObject.transform.position, direction * rayDistance, Color.red);
+            }
+        }
+    }
+
+    private LayerMask GetLayerMaskByName(string layerName)
+    {
+        int layer = LayerMask.NameToLayer(layerName);
+        if (layer == -1)
+        {
+            Debug.LogError($"Layer '{layerName}' does not exist.");
+            return LayerMask.GetMask(); // Returns an empty layer mask
+        }
+
+        return 1 << layer;
     }
 }

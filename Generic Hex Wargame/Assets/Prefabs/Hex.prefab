@@ -222,3 +222,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662f45ce252ff4240a4116c911fb29de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hexId: 0
+  colliderGameObject: {fileID: 5646001078296852123}

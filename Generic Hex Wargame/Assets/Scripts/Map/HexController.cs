@@ -5,6 +5,7 @@ using UnityEngine;
 public class HexController : MonoBehaviour
 {
     [SerializeField] private int hexId;
+    public HexColliderHelper colliderGameObject;
 
     public int GetHexId()
     {

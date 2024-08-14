@@ -89,11 +89,11 @@
     <Compile Include="Assets\Scripts\Combat\CombatManagerUnit.cs" />
     <Compile Include="Assets\Scripts\Combat\CombatManagerListener.cs" />
     <Compile Include="Assets\Scripts\Input\CanvasHelper.cs" />
+    <Compile Include="Assets\Scripts\Map\HexStackController.cs" />
     <Compile Include="Assets\Scripts\Data\Unit.cs" />
     <Compile Include="Assets\Scripts\Factories\UnitProfileFactory.cs" />
     <Compile Include="Assets\Scripts\Units\Abilities\IBeforeRoll.cs" />
     <Compile Include="Assets\Scripts\Units\Abilities\Implementations\Suppresive.cs" />
-    <Compile Include="Assets\Scripts\Map\HexStackController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
