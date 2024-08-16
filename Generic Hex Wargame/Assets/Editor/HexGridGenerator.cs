@@ -111,6 +111,7 @@ public class HexGridGenerator : EditorWindow
         }
     }
 
+    // Fire off raycasts from each hex and create connection objects
     public void ConnectHexes()
     {
         LayerMask targetLayer = GetLayerMaskByName("HexGrid");
@@ -137,6 +138,18 @@ public class HexGridGenerator : EditorWindow
                     if (hit.collider != null && hit.collider.gameObject != currentHex.gameObject.GetComponent<HexController>().colliderGameObject.gameObject)
                     {
                         Debug.Log($"Ray hit: {hit.collider.gameObject.GetComponentInParent<HexController>().GetHexId()} at angle {angle} degrees");
+
+                        //Check if connection object on the target exists that is connecting to this hex
+                        if(hit.collider.GetComponent<HexController>().GetConnectionController().GetConnectionToHex(currentHex) != null)
+                        {
+                            HexConnection existingConnection = hit.collider.GetComponent<HexController>().GetConnectionController().GetConnectionToHex(currentHex);
+                            existingConnection.AddConnectedHex(currentHex);
+                            currentHex.GetConnectionController().AddConnectionToHex(existingConnection);
+                        } else
+                        {
+                            // Create new connection object and add current and target hex to it
+                        }
+
                         break; // Exit after finding the first valid hit
                     }
                 }
