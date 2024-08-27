@@ -7,6 +7,7 @@ public class HexController : MonoBehaviour
     [SerializeField] private int hexId;
     public HexColliderHelper colliderGameObject;
     [SerializeField] private HexConnectionController hexConnectionController;
+    [SerializeField] private HexTerrain hexTerrain;
 
     public int GetHexId()
     {
@@ -21,5 +22,10 @@ public class HexController : MonoBehaviour
     public HexConnectionController GetConnectionController()
     {
         return hexConnectionController;
+    }
+
+    public HexTerrain GetHexTerrain()
+    {
+        return hexTerrain;
     }
 }

@@ -21,7 +21,22 @@ public class HexConnection : MonoBehaviour
 
     public void AddConnectedHex(HexController hex)
     {
+        if(connectedHexes == null)
+        {
+            connectedHexes = new List<HexController>();
+        }
+
+        if(connectedHexes.Contains(hex))
+        {
+            return;
+        }
+
         connectedHexes.Add(hex);
+
+        if(connectedHexes.Count == 2)
+        {
+            gameObject.name = "Connection " + connectedHexes[0].GetHexId() + "_" + connectedHexes[1].GetHexId();
+        }
     }
 
     public List<HexController> GetAllHexesOnConnection() 

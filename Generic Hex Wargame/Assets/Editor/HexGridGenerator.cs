@@ -129,8 +129,8 @@ public class HexGridGenerator : EditorWindow
         LayerMask targetLayer = GetLayerMaskByName("HexGrid");
         float rayDistance = 10f;
 
-        //for (int i = 0; i < hexGridParent.transform.childCount; i++)
-        for (int i = 0; i < 1; i++)
+        //for (int i = 0; i < 1; i++)
+        for(int i = 0; i < hexGridParent.transform.childCount; i++)
         {
             HexController currentHex = hexGridParent.transform.GetChild(i).GetComponent<HexController>();
 
@@ -151,17 +151,19 @@ public class HexGridGenerator : EditorWindow
                     {
                         Debug.Log($"Ray hit: {hit.collider.gameObject.GetComponentInParent<HexController>().GetHexId()} at angle {angle} degrees");
 
-                        //Check if connection object on the target exists that is connecting to this hex
-                        Debug.Log("Hex controller is null " + hit.collider.GetComponentInParent<HexController>().GetHexId());
-                        Debug.Log("Connection controller is null " + hit.collider.GetComponentInParent<HexController>().GetConnectionController());
+                        ////Check if connection object on the target exists that is connecting to this hex
+                        //Debug.Log("Hex controller is null " + hit.collider.GetComponentInParent<HexController>().GetHexId());
+                        //Debug.Log("Connection controller is null " + hit.collider.GetComponentInParent<HexController>().GetConnectionController());
 
                         if(hit.collider.GetComponentInParent<HexController>().GetConnectionController().GetConnectionToHex(currentHex) != null)
                         {
+                            Debug.Log("This connection exists");
                             HexConnection existingConnection = hit.collider.GetComponentInParent<HexController>().GetConnectionController().GetConnectionToHex(currentHex);
                             existingConnection.AddConnectedHex(currentHex);
                             currentHex.GetConnectionController().AddConnectionToHex(existingConnection);
                         } else
                         {
+                            Debug.Log("Create new connection object");
                             // Create new connection object and add current and target hex to it
                             GameObject connectionGO = new GameObject();
                             connectionGO.transform.parent = connectionsParent.transform;
@@ -169,6 +171,8 @@ public class HexGridGenerator : EditorWindow
                             hexConnection.SetConnectionId(connectionsParent.transform.childCount);
                             hexConnection.AddConnectedHex(currentHex);
                             hexConnection.AddConnectedHex(hit.collider.GetComponentInParent<HexController>());
+
+                            currentHex.GetConnectionController().AddConnectionToHex(hexConnection);
                         }
 
                         break; // Exit after finding the first valid hit
